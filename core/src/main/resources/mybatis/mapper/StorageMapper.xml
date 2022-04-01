@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ru.exam.ruzana.repository.StorageRepository">
+
+    <resultMap id="storage" type="ru.exam.ruzana.model.Storage"
+               autoMapping="true">
+        <id property="id" column="id" jdbcType="BIGINT"/>
+    </resultMap>
+    <insert id="insert">
+        insert into storage (name, quantity, price_per_unit, producer_id, category_id, created_at, updated_at)
+        values (#{name}, #{quantity}, #{pricePerUnit}, #{producerId}, #{categoryId}, #{createdAt}, #{updatedAt})
+    </insert>
+
+    <update id="addQuantity">
+        update storage
+        set quantity = #{quantity}
+        where id = #{id}
+    </update>
+
+    <update id="update">
+        update storage
+        set name           = #{name},
+            quantity       = #{quantity},
+            price_per_unit = #{pricePerUnit},
+            producer_id        = #{producerId},
+            category_id    = #{categoryId},
+            created_at     = #{createdAt},
+            updated_at     = #{updatedAt}
+    </update>
+    <delete id="delete">
+        delete
+        from storage
+        where id = #{id}
+    </delete>
+    <select id="findAllByCategoryId" resultType="ru.exam.ruzana.model.Storage">
+        select name, quantity, price_per_unit, producer_id, category_id, created_at, updated_at
+        from storage
+                 left join category c on c.id = #{id}
+    </select>
+
+
+</mapper>

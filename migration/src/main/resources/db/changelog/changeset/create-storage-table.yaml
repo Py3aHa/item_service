@@ -1,0 +1,52 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-storage-table
+      author: Aishuakova Ruzana
+      changes:
+        - createTable:
+            tableName: storage
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: quantity
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: price_per_unit
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: producer_id
+                  type: int
+                  constraints:
+                    nullable: false
+#                    foreignKeyName: producer_id
+#                    referencedTableName: producer
+#                    referencedColumnNames: id
+              - column:
+                  name: category_id
+                  type: boolean
+                  constraints:
+                    nullable: false
+#                    foreignKeyName: category_id
+#                    referencedTableName: category
+#                    referencedColumnNames: id
+              - column:
+                  name: created_at
+                  type: date
+              - column:
+                  name: updated_at
+                  type: date
